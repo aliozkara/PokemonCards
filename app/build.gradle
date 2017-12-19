@@ -1,0 +1,99 @@
+apply plugin: 'com.android.application'
+
+
+def STRING = 'String'
+def BUILD_TIME = 'BUILD_TIME'
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion "${rootProject.ext.buildToolsVersion}"
+
+    defaultConfig {
+        applicationId "alico.com.pokemoncards"
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        buildConfigField STRING, BUILD_TIME, "\"${rootProject.ext.buildTime}\""
+        multiDexEnabled true
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            useProguard true
+            zipAlignEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug{
+            minifyEnabled false
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    packagingOptions {
+        exclude 'META-INF/rxjava.properties'
+    }
+}
+
+dependencies {
+
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    //supportLib
+    implementation rootProject.ext.supportLib
+    implementation rootProject.ext.supportLibAppCompat
+    implementation rootProject.ext.supportLibDesign
+    implementation rootProject.ext.supportLibRecyclerview
+    implementation rootProject.ext.supportLibCardview
+    implementation rootProject.ext.supportLibConstraintlayout
+    implementation rootProject.ext.multidex
+
+    //rx
+    implementation rootProject.ext.rxJava
+    implementation rootProject.ext.rxAndroid
+    implementation rootProject.ext.rxBinding
+    implementation rootProject.ext.rxBindingV7
+    implementation rootProject.ext.rxBindingDesign
+
+    //dagger
+    implementation rootProject.ext.dagger
+    annotationProcessor rootProject.ext.daggerApt
+
+    //eventbus
+    implementation rootProject.ext.eventBus
+
+    //timber
+    implementation rootProject.ext.timber
+
+    //butterknife
+    implementation rootProject.ext.butterknife
+    annotationProcessor rootProject.ext.butterknifeCompiler
+
+    //gson
+    implementation rootProject.ext.gson
+
+    //okhttp
+    implementation rootProject.ext.okhttp
+
+    //retrofit
+    implementation rootProject.ext.retrofit
+    implementation rootProject.ext.retrofitGson
+    implementation rootProject.ext.retrofitRxJava
+
+    //fresco
+    implementation rootProject.ext.fresco
+
+
+
+
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.1'
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:3.0.1', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+        exclude group: 'com.google.code.findbugs'
+    })
+
+}
