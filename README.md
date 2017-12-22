@@ -1,4 +1,4 @@
 # PokemonCards
 
 
-Android Clean MVP Architecture with Dagger 2
+Android Clean MVP Architecture with Dagger 2 & Simple Package Structure
