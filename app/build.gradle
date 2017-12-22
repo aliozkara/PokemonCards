@@ -25,7 +25,7 @@ android {
             zipAlignEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
-        debug{
+        debug {
             minifyEnabled false
         }
     }
@@ -60,6 +60,7 @@ dependencies {
 
     //dagger
     implementation rootProject.ext.dagger
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     annotationProcessor rootProject.ext.daggerApt
 
     //eventbus

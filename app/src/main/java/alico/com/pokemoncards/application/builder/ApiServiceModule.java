@@ -18,7 +18,7 @@ public class ApiServiceModule {
     Api provideApiService(OkHttpClient client, GsonConverterFactory gson, RxJavaCallAdapterFactory rxAdapter) {
 
         Retrofit retrofit = new Retrofit.Builder().client(client)
-                .baseUrl(Constants.BASE_URL).addConverterFactory(gson).
+                .baseUrl(Constants.API_BASE_URL).addConverterFactory(gson).
                         addCallAdapterFactory(rxAdapter).build();
 
         return retrofit.create(Api.class);

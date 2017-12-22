@@ -1,8 +1,18 @@
 package alico.com.pokemoncards.api;
 
+import rx.Observable;
+
+import alico.com.pokemoncards.model.rest.CardApiModel;
+import retrofit2.http.GET;
+import retrofit2.http.Query;
+
 /**
  * Created by alicanozkara on 19.12.2017.
  */
 
-public class Api {
+public interface Api {
+
+    @GET("cards")
+    Observable<CardApiModel> cards(@Query("pageSize") int pageSize);
+
 }

@@ -4,6 +4,8 @@ import android.app.Application;
 import android.content.Context;
 import android.support.multidex.MultiDex;
 
+import com.facebook.drawee.backends.pipeline.Fresco;
+
 import alico.com.pokemoncards.application.builder.AppComponent;
 import alico.com.pokemoncards.application.builder.AppContextModule;
 import alico.com.pokemoncards.application.builder.DaggerAppComponent;
@@ -26,6 +28,8 @@ public class App extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+
+        Fresco.initialize(this);
 
         initialiseLogger();
         initAppComponent();
