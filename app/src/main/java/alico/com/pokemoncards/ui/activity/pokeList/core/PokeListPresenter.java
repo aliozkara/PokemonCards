@@ -21,14 +21,18 @@ public class PokeListPresenter {
         this.model = model;
         this.subscription = sub;
 
-        view.initView();
     }
 
-    public void cards(int pageSize){
-        subscription.add(setCards(pageSize));
+    public void cards(int pageSize, int offset){
+        subscription.add(setCards(pageSize, offset));
     }
 
-    private Subscription setCards(int pageSize){
+    public void cardSearch(String name, int pageSize, int offset){
+        subscription.add(setSearchCards(name, pageSize, offset));
+    }
+
+
+    private Subscription setCards(int pageSize, int page){
 
         return model.isNetworkAvailable()
                 .doOnNext(networkAvailable -> {
@@ -37,7 +41,23 @@ public class PokeListPresenter {
                     }
                 })
                 .filter(isNetworkAvailable -> isNetworkAvailable)
-                .flatMap(isAvailable -> model.cards(pageSize))
+                .flatMap(isAvailable -> model.cards(pageSize, page))
+                .subscribeOn(rxSchedulers.internet())
+                .observeOn(rxSchedulers.androidThread())
+                .subscribe(results -> view.cards(results), throwable -> view.apiError(throwable));
+
+    }
+
+    private Subscription setSearchCards(String name, int pageSize, int page){
+
+        return model.isNetworkAvailable()
+                .doOnNext(networkAvailable -> {
+                    if(!networkAvailable){
+                        view.connectionError();
+                    }
+                })
+                .filter(isNetworkAvailable -> isNetworkAvailable)
+                .flatMap(isAvailable -> model.cardSearch(name, pageSize, page))
                 .subscribeOn(rxSchedulers.internet())
                 .observeOn(rxSchedulers.androidThread())
                 .subscribe(results -> view.cards(results), throwable -> view.apiError(throwable));

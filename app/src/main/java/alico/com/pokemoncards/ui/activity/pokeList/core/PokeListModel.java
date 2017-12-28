@@ -25,8 +25,11 @@ public class PokeListModel {
         return NetworkUtils.isNetworkAvailableObservable(context);
     }
 
-    Observable<CardApiModel> cards(int pageSize){
-        return api.cards(pageSize);
+    Observable<CardApiModel> cards(int pageSize, int page){
+        return api.cards(pageSize, page);
     }
 
+    Observable<CardApiModel> cardSearch(String name, int pageSize, int page){
+        return api.cardSearch(name, pageSize, page);
+    }
 }

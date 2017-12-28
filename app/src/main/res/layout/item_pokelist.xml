@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:fresco="http://schemas.android.com/tools"
     android:id="@+id/wrapper"
-    android:layout_centerInParent="true"
     android:layout_margin="5dp">
 
 
@@ -13,6 +12,7 @@
         android:background="@android:color/white"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
         card_view:cardCornerRadius="5dp">
 
 
@@ -26,10 +26,7 @@
                 android:id="@+id/item_pokelist_sdv_img"
                 android:layout_width="245dp"
                 android:layout_height="342dp"
-                android:adjustViewBounds="true"
-                android:scaleType="centerCrop"
-                fresco:fadeDuration="300"
-                fresco:viewAspectRatio="1.33" />
+                fresco:fadeDuration="300"/>
 
 
         </RelativeLayout>

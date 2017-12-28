@@ -13,6 +13,9 @@ import retrofit2.http.Query;
 public interface Api {
 
     @GET("cards")
-    Observable<CardApiModel> cards(@Query("pageSize") int pageSize);
+    Observable<CardApiModel> cards(@Query("pageSize") int pageSize, @Query("page") int page);
+
+    @GET("cards")
+    Observable<CardApiModel> cardSearch(@Query("name") String name, @Query("pageSize") int pageSize, @Query("page") int page);
 
 }

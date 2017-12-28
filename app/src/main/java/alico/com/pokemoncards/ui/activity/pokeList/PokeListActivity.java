@@ -31,9 +31,14 @@ public class PokeListActivity extends BaseActivity {
     }
 
 
-    public void getCards(int pageSize){
-        presenter.cards(pageSize);
+    public void getCards(int pageSize, int page){
+        presenter.cards(pageSize, page);
     }
+
+    public void getCardSearch(String name ,int pageSize, int page){
+        presenter.cardSearch(name, pageSize, page);
+    }
+
 
     @Override
     protected void onPause() {

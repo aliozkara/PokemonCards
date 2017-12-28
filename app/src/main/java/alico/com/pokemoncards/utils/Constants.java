@@ -10,6 +10,6 @@ public class Constants {
     public static final String API_BASE_VERSION = "v1/";
     public static final String API_BASE_URL = API_BASE+API_BASE_VERSION;
 
-    public static final int ITEM_LIMIT = 30;
+    public static final int ITEM_LIMIT = 10;
 
 }

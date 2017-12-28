@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/wrapper"
-    android:background="@color/lightBg"
+    android:background="@color/greyBg"
     tools:context="alico.com.pokemoncards.ui.activity.pokeList.PokeListActivity">
 
 
@@ -25,21 +25,41 @@
             app:title="@string/app_name"
             android:background="?attr/colorPrimary" />
 
-
-        <android.support.v4.widget.SwipeRefreshLayout
-            android:id="@+id/activity_pokelist_srl_refresh"
+        <LinearLayout
+            android:background="@color/lightBg"
+            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="50dp"
+            android:padding="10dp">
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/activity_pokelist_rv_list"
+
+            <ImageView
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/ic_search_darkgrey_24dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+
+            <EditText
+                android:id="@+id/activity_pokelist_et_search"
+                android:layout_marginLeft="5dp"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:textSize="16sp"
+                android:textColor="@color/darkGrey"
+                android:background="@android:color/transparent"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:scrollbars="vertical"/>
+                android:hint="Search Pokecards"/>
+
+        </LinearLayout>
 
 
-        </android.support.v4.widget.SwipeRefreshLayout>
-
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/activity_pokelist_rv_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="vertical"/>
 
     </LinearLayout>
 
