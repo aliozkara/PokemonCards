@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/wrapper"
-    android:background="@color/lightBg"
+    android:background="@android:color/black"
     tools:context="alico.com.pokemoncards.ui.activity.pokeDetail.PokeDetailActivity">
 
 
@@ -22,10 +22,23 @@
             android:minHeight="?attr/actionBarSize"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:title="@string/app_name"
+            app:navigationIcon="@drawable/ic_arrow_back_white_24dp"
             android:background="?attr/colorPrimary" />
 
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <ImageView
+                android:id="@+id/activity_pokedetail_iv_show"
+                android:layout_centerInParent="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+
+        </RelativeLayout>
 
 
     </LinearLayout>

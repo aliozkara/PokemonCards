@@ -1,6 +1,7 @@
 package alico.com.pokemoncards.adapters;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -8,12 +9,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.util.List;
 
 import alico.com.pokemoncards.R;
 import alico.com.pokemoncards.listener.OnLoadMoreListener;
+import alico.com.pokemoncards.model.bus.CardBusModel;
 import alico.com.pokemoncards.model.item.CardItem;
 import alico.com.pokemoncards.model.item.ProgressItem;
+import alico.com.pokemoncards.ui.activity.pokeDetail.PokeDetailActivity;
 import alico.com.pokemoncards.ui.holder.CardHolder;
 import alico.com.pokemoncards.ui.holder.ProgressHolder;
 import alico.com.pokemoncards.utils.Constants;
@@ -144,6 +149,11 @@ public class PokeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         final CardItem cardItem = (CardItem) list.get(position);
 
         vh.item_pokelist_sdv_img.setImageURI(Uri.parse(cardItem.getImageUrl()));
+
+        vh.wrapper.setOnClickListener(v -> {
+            activity.startActivity(new Intent(activity, PokeDetailActivity.class));
+            EventBus.getDefault().postSticky(new CardBusModel(cardItem.getId()));
+        });
 
     }
 

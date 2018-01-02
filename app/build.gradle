@@ -87,7 +87,8 @@ dependencies {
     //fresco
     implementation rootProject.ext.fresco
 
-
+    //picasso
+    implementation rootProject.ext.picasso
 
 
     testImplementation 'junit:junit:4.12'

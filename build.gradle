@@ -95,6 +95,9 @@ ext {
     frescoVersion = '1.7.1'
     fresco = "com.facebook.fresco:fresco:$frescoVersion"
 
+    //picasso
+    picassoVersion = '2.5.2'
+    picasso = "com.squareup.picasso:picasso:$picassoVersion"
 
     buildTime = new Date().format("yyyy-MM-dd'T'HH:mm'Z'", TimeZone.getTimeZone("UTC"))
 }

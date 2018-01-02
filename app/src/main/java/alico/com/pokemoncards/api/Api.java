@@ -1,5 +1,7 @@
 package alico.com.pokemoncards.api;
 
+import alico.com.pokemoncards.model.rest.CardDetailApiModel;
+import retrofit2.http.Path;
 import rx.Observable;
 
 import alico.com.pokemoncards.model.rest.CardApiModel;
@@ -18,4 +20,6 @@ public interface Api {
     @GET("cards")
     Observable<CardApiModel> cardSearch(@Query("name") String name, @Query("pageSize") int pageSize, @Query("page") int page);
 
+    @GET("cards/{id}")
+    Observable<CardDetailApiModel> cardDetail(@Path("id") String id);
 }

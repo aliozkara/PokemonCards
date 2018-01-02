@@ -90,3 +90,7 @@
     long producerIndex;
     long consumerIndex;
 }
+
+#picasso
+-dontwarn com.squareup.okhttp.**
+

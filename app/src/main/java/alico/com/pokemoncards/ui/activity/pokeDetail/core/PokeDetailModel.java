@@ -1,6 +1,7 @@
 package alico.com.pokemoncards.ui.activity.pokeDetail.core;
 
 import alico.com.pokemoncards.api.Api;
+import alico.com.pokemoncards.model.rest.CardDetailApiModel;
 import alico.com.pokemoncards.ui.activity.pokeDetail.PokeDetailActivity;
 import alico.com.pokemoncards.utils.NetworkUtils;
 import rx.Observable;
@@ -21,6 +22,10 @@ public class PokeDetailModel {
 
     Observable<Boolean> isNetworkAvailable(){
         return NetworkUtils.isNetworkAvailableObservable(context);
+    }
+
+    Observable<CardDetailApiModel> cardDetail(String id){
+        return api.cardDetail(id);
     }
 
 }

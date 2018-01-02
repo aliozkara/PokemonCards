@@ -1,17 +1,22 @@
 package alico.com.pokemoncards.ui.activity.pokeDetail.core;
 
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
-import android.widget.Toolbar;
+
+import com.squareup.picasso.Picasso;
 
 import alico.com.pokemoncards.R;
+import alico.com.pokemoncards.model.bus.CardBusModel;
+import alico.com.pokemoncards.model.rest.CardDetailApiModel;
 import alico.com.pokemoncards.ui.activity.pokeDetail.PokeDetailActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import io.reactivex.disposables.Disposable;
+import timber.log.Timber;
 
 /**
  * Created by alicanozkara on 20.12.2017.
@@ -23,11 +28,11 @@ public class PokeDetailView {
     RelativeLayout wrapper;
     @BindView(R.id.activity_pokedetail_tb_toolbar)
     Toolbar activity_pokedetail_tb_toolbar;
+    @BindView(R.id.activity_pokedetail_iv_show)
+    ImageView activity_pokedetail_iv_show;
 
     View view;
     PokeDetailActivity context;
-
-    Disposable disposable;
 
     public PokeDetailView(PokeDetailActivity activity) {
         FrameLayout parent = new FrameLayout(activity);
@@ -37,14 +42,37 @@ public class PokeDetailView {
         this.context = activity;
 
         initView();
+        listener();
     }
 
     public View view(){
         return view;
     }
 
-    private void initView(){
+    private void initView() {
+    }
 
+    public void connectionError(){
+        Timber.e("CONNECTION ERROR");
+    }
+
+    public void apiError(Throwable error){
+        Timber.e("API ERROR %s", error.toString());
+    }
+
+    public void card(CardDetailApiModel response){
+        Timber.e("DATA %s", response);
+
+        activity_pokedetail_tb_toolbar.setTitle(response.getCard().getName());
+        Picasso.with(context).load(response.getCard().getImageUrlHiRes()).into(activity_pokedetail_iv_show);
+    }
+
+    public void onEvent(CardBusModel model) {
+        context.getCard(model.getId());
+    }
+
+    private void listener(){
+        activity_pokedetail_tb_toolbar.setNavigationOnClickListener(view -> context.finish());
     }
 
 }
